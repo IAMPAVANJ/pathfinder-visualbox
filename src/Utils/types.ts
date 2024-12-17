@@ -11,4 +11,5 @@ export type TileType = {
   parent: TileType | null;
   isTraversed: boolean;
 };
+export type SpeedType = 2 | 1 | 0.5;
 export type GridType = TileType[][];
