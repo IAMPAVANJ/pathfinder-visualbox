@@ -26,3 +26,20 @@ export const createGrid = (startTile: TileType, endTile: TileType) => {
   }
   return grid;
 };
+
+export function checkIsStartOrEnd(row: number, col: number) {
+  if ((row === 1 && col === 1) || row === maxCols - 2 || col === maxCols - 2) {
+    return true;
+  }
+}
+
+export function createNewGrid(grid: GridType, row: number, col: number) {
+  const newGrid = grid.slice();
+  console.log(newGrid, "grid");
+  const newTile = {
+    ...newGrid[row][col],
+    isWall: !newGrid[row][col].isWall,
+  };
+  newGrid[row][col] = newTile;
+  return newGrid;
+}
