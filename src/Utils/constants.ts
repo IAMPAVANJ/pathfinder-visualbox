@@ -1,4 +1,4 @@
-import { MazeSelectType } from "./types";
+import { MazeSelectType, SpeedSelectType } from "./types";
 
 export const maxRows = 40;
 export const maxCols = 50;
@@ -37,4 +37,9 @@ export const Mazes: MazeSelectType[] = [
   { name: "No Maze", value: "none" },
   { name: "Binary Tree", value: "binary" },
   { name: "Recursive Division", value: "recursive" },
+];
+export const SPEEDS: SpeedSelectType[] = [
+  { name: "Slow", value: 2 },
+  { name: "Medium", value: 1 },
+  { name: "Fast", value: 0.5 },
 ];

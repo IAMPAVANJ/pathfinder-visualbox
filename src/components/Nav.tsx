@@ -1,14 +1,23 @@
+import { useState } from "react";
 import { usePathfinding } from "../hooks/usePathfinding";
+import { useTile } from "../hooks/useTile";
 import { Mazes } from "../Utils/constants";
+import { resetGrid } from "../Utils/ResetGrid";
 import { MazeType } from "../Utils/types";
 import Select from "./Select";
 
 const Nav = () => {
-  const { maze, setMaze } = usePathfinding();
+  const [isDisabled, setIsDisabled] = useState(false);
+  const { maze, setMaze, grid } = usePathfinding();
+  const { startTile, endTile } = useTile();
   const handleGenerateMaze = (maze: MazeType) => {
     if (maze === "none") {
       setMaze(maze);
+      resetGrid({ grid, startTile, endTile });
+      return;
     }
+    setMaze(maze);
+    setIsDisabled(true);
   };
   return (
     <div className="flex items-center justify-center min-h-[4.5rem] border-b shadow-gray-600 sm:px-5 px-0">
@@ -21,7 +30,7 @@ const Nav = () => {
             options={Mazes}
             onChange={(e) => {
               console.log(e);
-              // handle generating function
+              handleGenerateMaze(e.target.value as MazeType);
             }}
           />
         </div>
