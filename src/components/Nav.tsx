@@ -5,11 +5,14 @@ import { Mazes } from "../Utils/constants";
 import { resetGrid } from "../Utils/ResetGrid";
 import { MazeType } from "../Utils/types";
 import Select from "./Select";
+import { runMazeAlgorithm } from "../Utils/runMazeAlgorithm";
+import { useSpeed } from "../hooks/useSpeed";
 
 const Nav = () => {
   const [isDisabled, setIsDisabled] = useState(false);
   const { maze, setMaze, grid } = usePathfinding();
   const { startTile, endTile } = useTile();
+  const { speed } = useSpeed();
   const handleGenerateMaze = (maze: MazeType) => {
     if (maze === "none") {
       setMaze(maze);
@@ -18,6 +21,14 @@ const Nav = () => {
     }
     setMaze(maze);
     setIsDisabled(true);
+    runMazeAlgorithm({
+      maze,
+      grid,
+      startTile,
+      endTile,
+      setIsDisabled,
+      speed,
+    });
   };
   return (
     <div className="flex items-center justify-center min-h-[4.5rem] border-b shadow-gray-600 sm:px-5 px-0">

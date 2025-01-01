@@ -5,13 +5,13 @@ const createRow = (row: number, startTile: TileType, endTile: TileType) => {
   const currentRow = [];
   for (let col = 0; col < maxCols; col++) {
     currentRow.push({
-      row: row,
-      col: col,
+      row,
+      col,
       isEnd: row === endTile.row && col === endTile.col,
-      isStart: row === startTile.row && col === startTile.col,
       isWall: false,
       isPath: false,
       distance: Infinity,
+      isStart: row === startTile.row && col === startTile.col,
       isTraversed: false,
       parent: null,
     });
@@ -45,5 +45,19 @@ export function createNewGrid(grid: GridType, row: number, col: number) {
 }
 
 export const isEqual = (a: TileType, b: TileType) => {
-  return a.row === a.col && b.row === b.col;
+  return a.row === b.row && a.col === b.col;
+};
+
+export const isRowColEqual = (row: number, col: number, tile: TileType) => {
+  return row === tile.row && col === tile.col;
+};
+
+export const sleep = (ms: number) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+export const getRandInt = (min: number, max: number) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
 };
