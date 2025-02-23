@@ -1,26 +1,26 @@
-import React, { ChangeEvent } from "react";
-// import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react'
-// import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
-// import clsx from 'clsx'
-const Select = ({
+import { ChangeEvent } from "react";
+
+export function Select({
   value,
-  label,
   onChange,
   options,
+  label,
   isDisabled,
 }: {
-  value: number | string;
+  value: string | number;
   label: string;
   onChange: (value: ChangeEvent<HTMLSelectElement>) => void;
+  options: { value: string | number; name: string }[];
   isDisabled?: boolean;
-  options: { value: number | string; name: string }[];
-}) => {
+}) {
   return (
     <div className="flex flex-col items-start gap-1">
-      <label className="text-xs text-gray-400 ml-1">{label}</label>
+      <label className="text-xs text-gray-300 ml-1" htmlFor={label}>
+        {label}
+      </label>
       <select
         disabled={isDisabled}
-        className="bg-gray-700 cursor-pointer hover:bg-gray-800 transition ease-in active:ring-0 active:border-0 p-2 min-w-[200px] sm:min-w-full"
+        className="bg-gray-700 disabled:pointer-events-none rounded-md cursor-pointer hover:bg-gray-800 transition ease-in active:ring-0 active:border-0 p-2 min-w-[200px] sm:min-w-full"
         id={label}
         value={value}
         onChange={onChange}
@@ -33,6 +33,4 @@ const Select = ({
       </select>
     </div>
   );
-};
-
-export default Select;
+}

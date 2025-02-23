@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 import { SpeedContext } from "./Contexts";
-import { SpeedType } from "../Utils/types";
+import { SpeedType } from "../utils/types";
 
 export const SpeedProvider = ({ children }: { children: ReactNode }) => {
   const [speed, setSpeed] = useState<SpeedType>(0.5);

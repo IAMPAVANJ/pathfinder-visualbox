@@ -1,10 +1,10 @@
 import { ReactNode, useState } from "react";
-import { AlgorithmType, GridType, MazeType } from "../Utils/types";
-import { createGrid } from "../Utils/helpers";
+import { AlgorithmType, GridType, MazeType } from "../utils/types";
+import { createGrid } from "../utils/helpers";
 import {
   endTileConfiguration,
   startTileConfiguration,
-} from "../Utils/constants";
+} from "../utils/constants";
 import { PathfindingContext } from "./Contexts";
 
 export const PathfindingProvider = ({ children }: { children: ReactNode }) => {

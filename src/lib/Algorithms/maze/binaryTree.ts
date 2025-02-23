@@ -1,11 +1,13 @@
 import {
-  maxCols as MAX_ROWS,
-  maxRows as MAX_COLS,
-} from "../../../Utils/constants";
-import { createWall } from "../../../Utils/createWall";
-import { destroyWall } from "../../../Utils/destroyWall";
-import { getRandInt, isEqual, sleep } from "../../../Utils/helpers";
-import { GridType, SpeedType, TileType } from "../../../Utils/types";
+  MAX_ROWS,
+  MAX_COLS,
+} from "../../../utils/constants";
+import { createWall } from "../../../utils/createWall";
+import { destroyWall } from "../../../utils/destroyWall";
+import { getRandInt, isEqual, sleep } from "../../../utils/helpers";
+import { GridType, SpeedType, TileType } from "../../../utils/types";
+
+// Binary Tree Maze Algorithm
 export const binaryTree = async (
   grid: GridType,
   startTile: TileType,
@@ -30,9 +32,9 @@ export const binaryTree = async (
     }
   }
 
-  for (let r = 1; r < MAX_ROWS - 1; r += 2) {
+  for (let r = 1; r < MAX_ROWS; r += 2) {
     // Iterate through odd rows starting from 1
-    for (let c = 1; c < MAX_COLS - 1; c += 2) {
+    for (let c = 1; c < MAX_COLS; c += 2) {
       // Iterate through odd columns starting from 1
       if (r === MAX_ROWS - 2 && c === MAX_COLS - 2) {
         // Skip the bottom-right corner

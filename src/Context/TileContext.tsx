@@ -2,8 +2,8 @@ import { useState, ReactNode } from "react";
 import {
   endTileConfiguration,
   startTileConfiguration,
-} from "../Utils/constants";
-import { TileType } from "../Utils/types";
+} from "../utils/constants";
+import { TileType } from "../utils/types";
 import { TileContext } from "./Contexts";
 
 export const TileProvider = ({ children }: { children: ReactNode }) => {

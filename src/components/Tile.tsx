@@ -1,74 +1,68 @@
 import { twMerge } from "tailwind-merge";
 import {
   END_TILE_STYLE,
-  maxCols,
-  maxRows,
+  MAX_ROWS,
   PATH_TILE_STYLE,
   START_TILE_STYLE,
   TILE_STYLE,
   TRAVERSED_TILE_STYLE,
   WALL_TILE_STYLE,
-} from "../Utils/constants";
-import React from "react";
+} from "../utils/constants";
 
 interface MouseFunction {
   (row: number, col: number): void;
 }
 
-export const Tile = React.memo(
-  ({
-    row,
-    col,
-    isStart,
-    isEnd,
-    isTraversed,
-    isWall,
-    isPath,
-    handleMouseDown,
-    handleMouseUp,
-    handleMouseEnter,
-  }: {
-    row: number;
-    col: number;
-    isStart: boolean;
-    isEnd: boolean;
-    isTraversed: boolean;
-    isWall: boolean;
-    isPath: boolean;
-    handleMouseDown: MouseFunction;
-    handleMouseUp: MouseFunction;
-    handleMouseEnter: MouseFunction;
-  }) => {
-    const tileStyle = isStart
-      ? START_TILE_STYLE
-      : isEnd
-      ? END_TILE_STYLE
-      : isTraversed
-      ? TRAVERSED_TILE_STYLE
-      : isWall
-      ? WALL_TILE_STYLE
-      : isPath
-      ? PATH_TILE_STYLE
-      : TILE_STYLE;
+export function Tile({
+  row,
+  col,
+  isStart,
+  isEnd,
+  isTraversed,
+  isWall,
+  isPath,
+  handleMouseDown,
+  handleMouseUp,
+  handleMouseEnter,
+}: {
+  row: number;
+  col: number;
+  isStart: boolean;
+  isEnd: boolean;
+  isTraversed: boolean;
+  isWall: boolean;
+  isPath: boolean;
+  handleMouseDown: MouseFunction;
+  handleMouseUp: MouseFunction;
+  handleMouseEnter: MouseFunction;
+}) {
+  let tileTyleStyle;
 
-    const borderStyle =
-      row === maxRows - 1
-        ? "border-b"
-        : col === 0
-        ? "border-l"
-        : row === 0
-        ? "border-t"
-        : col === maxCols - 1
-        ? "border-r"
-        : "";
-    return (
-      <div
-        className={twMerge(tileStyle, borderStyle)}
-        id={`${row}-${col}`}
-        onMouseDown={() => handleMouseDown(row, col)}
-        onMouseUp={() => handleMouseUp(row, col)}
-        onMouseEnter={() => handleMouseEnter(row, col)}
-      />
-    );
+  if (isStart) {
+    tileTyleStyle = START_TILE_STYLE;
+  } else if (isEnd) {
+    tileTyleStyle = END_TILE_STYLE;
+  } else if (isWall) {
+    tileTyleStyle = WALL_TILE_STYLE;
+  } else if (isPath) {
+    tileTyleStyle = PATH_TILE_STYLE;
+  } else if (isTraversed) {
+    tileTyleStyle = TRAVERSED_TILE_STYLE;
+  } else {
+    tileTyleStyle = TILE_STYLE;
   }
-);
+
+  const borderStyle =
+    row === MAX_ROWS - 1 ? "border-b" : col === 0 ? "border-l" : "";
+  const edgeStyle = row === MAX_ROWS - 1 && col === 0 ? "border-l" : "";
+
+  return (
+    <div
+      className={twMerge(tileTyleStyle, borderStyle, edgeStyle)}
+      id={`${row}-${col}`}
+      onMouseDown={() => handleMouseDown(row, col)}
+      onMouseUp={() => handleMouseUp(row, col)}
+      onMouseEnter={() => handleMouseEnter(row, col)}
+    />
+  );
+}

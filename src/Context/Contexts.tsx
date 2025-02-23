@@ -5,7 +5,7 @@ import {
   MazeType,
   SpeedType,
   TileType,
-} from "../Utils/types";
+} from "../utils/types";
 interface PathfindingContextInterface {
   algorithm: AlgorithmType;
   setAlgorithm: (algorithm: AlgorithmType) => void;
