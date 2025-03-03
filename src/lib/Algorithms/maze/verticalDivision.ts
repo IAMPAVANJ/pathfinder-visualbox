@@ -38,6 +38,7 @@ export async function verticalDivision({
       document.getElementById(
         `tile-${row + i}-${makeWallAt}`
       )!.className = `${WALL_TILE_STYLE} animate-wall`;
+
       await sleep(10 * SPEEDS.find((s) => s.value === speed)!.value - 5);
     }
   }
