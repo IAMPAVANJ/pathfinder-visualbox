@@ -3,9 +3,9 @@ import { BsFillPlayFill } from "react-icons/bs";
 import { GrPowerReset } from "react-icons/gr";
 
 export function PlayButton({
-  handlerRunVisualizer,
   isDisabled,
   isGraphVisualized,
+  handlerRunVisualizer,
 }: {
   isDisabled: boolean;
   isGraphVisualized: boolean;

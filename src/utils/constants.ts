@@ -1,4 +1,4 @@
-import { MazeSelectType, SpeedSelectType } from "./types";
+import { AlgorithmSelectType, MazeSelectType, SpeedSelectType } from "./types";
 
 export const MAX_COLS = 61;
 export const MAX_ROWS = 41;
@@ -35,7 +35,7 @@ export const WALL_TILE_STYLE = TILE_STYLE + " bg-gray-200";
 export const PATH_TILE_STYLE = TILE_STYLE + " bg-green-600";
 
 export const Mazes: MazeSelectType[] = [
-  { name: "No Maze", value: "none" },
+  { name: "No Maze", value: "NONE" },
   { name: "Binary Tree", value: "binary" },
   { name: "Recursive Division", value: "recursive" },
 ];
@@ -44,4 +44,10 @@ export const SPEEDS: SpeedSelectType[] = [
   { name: "Medium", value: 1 },
   { name: "Fast", value: 0.5 },
 ];
+export const PATHFINDING_ALGORITHMS: AlgorithmSelectType[] = [
+  {name:"Dijkstra", value:"DIJKSTRA"},
+  {name:"A-Star", value:"A_STAR"},
+  {name:"Breath First Search", value:"BFS"},
+  {name:"Depth First Search", value:"DFS"},
+]
 export const SLEEP_TIME = 8;

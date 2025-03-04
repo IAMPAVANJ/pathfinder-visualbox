@@ -1,7 +1,7 @@
 import {
   endTileConfiguration,
-  maxCols,
-  maxRows,
+  MAX_COLS as maxCols,
+  MAX_ROWS as maxRows,
   startTileConfiguration,
   TILE_STYLE,
 } from "./constants";

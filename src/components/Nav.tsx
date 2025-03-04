@@ -6,18 +6,22 @@ import { useTile } from "../hooks/useTile";
 import {
   // EXTENDED_SLEEP_TIME,
   Mazes,
+  PATHFINDING_ALGORITHMS,
   // PATHFINDING_ALGORITHMS,
   // SLEEP_TIME,
   SPEEDS,
 } from "../utils/constants";
 // import { resetGrid } from "../utils/resetGrid";
 import { 
+  AlgorithmType,
   // AlgorithmType,
    MazeType, SpeedType } from "../utils/types";
 import { Select } from "./Select";
 import { useSpeed } from "../hooks/useSpeed";
 import { runMazeAlgorithm } from "../utils/runMazeAlgorithm";
-// import { PlayButton } from "./PlayButton";
+import { resetGrid } from "../utils/ResetGrid";
+import { PlayButton } from "./PlayButton";
+import { runPathfindingAlgorithm } from "../utils/runPathfindingAlgorithm";
 // import { runPathfindingAlgorithm } from "../utils/runPathfindingAlgorithm";
 // import { animatePath } from "../utils/animatePath";
 
@@ -34,23 +38,24 @@ export default function Nav(
     setMaze,
     grid,
     setGrid,
-    // isGraphVisualized,
+    isGraphVisualized,
     setIsGraphVisualized,
-    // algorithm,
-    // setAlgorithm,
+    algorithm,
+    setAlgorithm,
   } = usePathfinding();
   const { startTile, endTile } = useTile();
   const { speed, setSpeed } = useSpeed();
 
   const handleGenerateMaze = (maze: MazeType) => {
-    // if (maze === "NONE") {
-    //   setMaze(maze);
-    //   resetGrid({ grid, startTile, endTile });
-    //   return;
-    // }
+    if (maze === "NONE") {
+      setMaze(maze);
+      resetGrid({ grid, startTile, endTile });
+      return;
+    }
 
     setMaze(maze);
     setIsDisabled(true);
+    resetGrid({ grid: grid.slice(), startTile, endTile })
     runMazeAlgorithm({
       maze,
       grid,
@@ -64,31 +69,32 @@ export default function Nav(
     setIsGraphVisualized(false);
   };
 
-  // const handlerRunVisualizer = () => {
-  //   if (isGraphVisualized) {
-  //     setIsGraphVisualized(false);
-  //     resetGrid({ grid: grid.slice(), startTile, endTile });
-  //     return;
-  //   }
+  const handlerRunVisualizer = () => {
+    if (isGraphVisualized) {
+      setIsGraphVisualized(false);
+      resetGrid({ grid: grid.slice(), startTile, endTile });
+      return;
+    }
 
-  //   const { traversedTiles, path } = runPathfindingAlgorithm({
-  //     algorithm,
-  //     grid,
-  //     startTile,
-  //     endTile,
-  //   });
-
-  //   animatePath(traversedTiles, path, startTile, endTile, speed);
-  //   setIsDisabled(true);
-  //   isVisualizationRunningRef.current = true;
-  //   setTimeout(() => {
-  //     const newGrid = grid.slice();
-  //     setGrid(newGrid);
-  //     setIsGraphVisualized(true);
-  //     setIsDisabled(false);
-  //     isVisualizationRunningRef.current = false;
-  //   }, SLEEP_TIME * (traversedTiles.length + SLEEP_TIME * 2) + EXTENDED_SLEEP_TIME * (path.length + 60) * SPEEDS.find((s) => s.value === speed)!.value);
-  // };
+    const { traversedTiles, path } = runPathfindingAlgorithm({
+      algorithm,
+      grid,
+      startTile,
+      endTile,
+    });
+console.log(traversedTiles, path);
+    // animatePath(traversedTiles, path, startTile, endTile, speed);
+    // setIsDisabled(true);
+    // isVisualizationRunningRef.current = true;
+    // setTimeout(() => {
+    //   const newGrid = grid.slice();
+    //   setGrid(newGrid);
+    //   setIsGraphVisualized(true);
+    //   setIsDisabled(false);
+    //   isVisualizationRunningRef.current = false;
+    // }, SLEEP_TIME * (traversedTiles.length + SLEEP_TIME * 2) + EXTENDED_SLEEP_TIME * (path.length + 60) * SPEEDS.find((s) => s.value === speed)!.value);
+  };
+  
 
   return (
     <div className="flex items-center justify-center min-h-[4.5rem] border-b shadow-gray-600 sm:px-5 px-0">
@@ -106,15 +112,15 @@ export default function Nav(
               handleGenerateMaze(e.target.value as MazeType);
             }}
           />
-          {/* <Select
-            label="Graph"
+          <Select
+            label="Graph" 
             value={algorithm}
             isDisabled={isDisabled}
             options={PATHFINDING_ALGORITHMS}
             onChange={(e) => {
               setAlgorithm(e.target.value as AlgorithmType);
             }}
-          /> */}
+          /> 
           <Select
             label="Speed"
             value={speed}
@@ -124,11 +130,11 @@ export default function Nav(
               setSpeed(parseInt(e.target.value) as SpeedType);
             }}
           />
-          {/* <PlayButton
+           <PlayButton
             isDisabled={isDisabled}
             isGraphVisualized={isGraphVisualized}
             handlerRunVisualizer={handlerRunVisualizer}
-          /> */}
+          />
         </div>
       </div>
     </div>
