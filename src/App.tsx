@@ -15,7 +15,7 @@ function App() {
         <SpeedProvider>
           <div className="relative h-screen w-screen flex flex-col z-10 videoBG ">
             <Nav 
-            // isVisualizationRunningRef={isVisualizationRunningRef}
+            isVisualizationRunningRef={isVisualizationRunningRef}
             />
             <Grid isVisualizationRunningRef={isVisualizationRunningRef} />
           </div>

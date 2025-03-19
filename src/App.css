@@ -1,7 +1,8 @@
 .videoBG{
-  background-image: url('/assets/bgImage.jpg');
+  /* background-image: url('/assets/bgImage.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center; */
+  background: radial-gradient(circle at bottom right, #661846, #002744, #032540);
 }
 .glassMorphism{
   @apply  bg-gray-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100;

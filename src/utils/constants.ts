@@ -1,29 +1,30 @@
 import { AlgorithmSelectType, MazeSelectType, SpeedSelectType } from "./types";
 
-export const MAX_COLS = 61;
-export const MAX_ROWS = 41;
+export const MAX_ROWS = 39;
+export const MAX_COLS = 69;
 
-export const startTileConfiguration = {
+export const START_TILE_CONFIGURATION = {
   row: 1,
   col: 1,
-  isStart: false,
   isEnd: false,
   isWall: false,
   isPath: false,
   distance: 0,
-  parent: null,
+  isStart: false,
   isTraversed: false,
+  parent: null,
 };
-export const endTileConfiguration = {
+
+export const END_TILE_CONFIGURATION = {
   row: MAX_ROWS - 2,
   col: MAX_COLS - 2,
-  isStart: false,
   isEnd: false,
   isWall: false,
   isPath: false,
   distance: 0,
-  parent: null,
+  isStart: false,
   isTraversed: false,
+  parent: null,
 };
 
 export const TILE_STYLE =
@@ -34,20 +35,24 @@ export const END_TILE_STYLE = TILE_STYLE + " bg-red-600";
 export const WALL_TILE_STYLE = TILE_STYLE + " bg-gray-200";
 export const PATH_TILE_STYLE = TILE_STYLE + " bg-green-600";
 
-export const Mazes: MazeSelectType[] = [
+export const MAZES: MazeSelectType[] = [
   { name: "No Maze", value: "NONE" },
-  { name: "Binary Tree", value: "binary" },
-  { name: "Recursive Division", value: "recursive" },
+  { name: "Binary Tree", value: "BINARY_TREE" },
+  { name: "Recursive Division", value: "RECURSIVE_DIVISION" },
 ];
+
+export const PATHFINDING_ALGORITHMS: AlgorithmSelectType[] = [
+  { name: "Dijkstra", value: "DIJKSTRA" },
+  { name: "A-Star", value: "A_STAR" },
+  { name: "Breath First Search", value: "BFS" },
+  { name: "Depth First Search", value: "DFS" },
+];
+
 export const SPEEDS: SpeedSelectType[] = [
   { name: "Slow", value: 2 },
   { name: "Medium", value: 1 },
   { name: "Fast", value: 0.5 },
 ];
-export const PATHFINDING_ALGORITHMS: AlgorithmSelectType[] = [
-  {name:"Dijkstra", value:"DIJKSTRA"},
-  {name:"A-Star", value:"A_STAR"},
-  {name:"Breath First Search", value:"BFS"},
-  {name:"Depth First Search", value:"DFS"},
-]
+
 export const SLEEP_TIME = 8;
+export const EXTENDED_SLEEP_TIME = 30;

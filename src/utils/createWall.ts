@@ -1,9 +1,4 @@
-import {
-  MAX_ROWS,
-  MAX_COLS,
-  SPEEDS,
-  WALL_TILE_STYLE,
-} from "./constants";
+import { MAX_COLS, MAX_ROWS, SPEEDS, WALL_TILE_STYLE } from "./constants";
 import { isRowColEqual } from "./helpers";
 import { SpeedType, TileType } from "./types";
 

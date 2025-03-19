@@ -1,13 +1,9 @@
-import {
-  MAX_ROWS,
-  MAX_COLS,
-} from "../../../utils/constants";
+import { MAX_COLS, MAX_ROWS } from "../../../utils/constants";
 import { createWall } from "../../../utils/createWall";
 import { destroyWall } from "../../../utils/destroyWall";
 import { getRandInt, isEqual, sleep } from "../../../utils/helpers";
 import { GridType, SpeedType, TileType } from "../../../utils/types";
 
-// Binary Tree Maze Algorithm
 export const binaryTree = async (
   grid: GridType,
   startTile: TileType,

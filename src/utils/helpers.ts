@@ -1,9 +1,9 @@
-import { MAX_COLS as maxCols, MAX_ROWS as maxRows } from "./constants";
+import { MAX_COLS, MAX_ROWS } from "./constants";
 import { GridType, TileType } from "./types";
 
 const createRow = (row: number, startTile: TileType, endTile: TileType) => {
   const currentRow = [];
-  for (let col = 0; col < maxCols; col++) {
+  for (let col = 0; col < MAX_COLS; col++) {
     currentRow.push({
       row,
       col,
@@ -21,25 +21,28 @@ const createRow = (row: number, startTile: TileType, endTile: TileType) => {
 
 export const createGrid = (startTile: TileType, endTile: TileType) => {
   const grid: GridType = [];
-  for (let row = 0; row < maxRows; row++) {
+  for (let row = 0; row < MAX_ROWS; row++) {
     grid.push(createRow(row, startTile, endTile));
   }
   return grid;
 };
 
-export function checkIfStartOrEnd(row: number, col: number) {
-  return (row === 1 && col === 1) || (row === maxCols - 2 || col === maxCols - 2);
-}
+export const checkIfStartOrEnd = (row: number, col: number) => {
+  return (
+    (row === 1 && col === 1) || (row === MAX_ROWS - 2 && col === MAX_COLS - 2)
+  );
+};
 
-export function createNewGrid(grid: GridType, row: number, col: number) {
+export const createNewGrid = (grid: GridType, row: number, col: number) => {
   const newGrid = grid.slice();
   const newTile = {
     ...newGrid[row][col],
     isWall: !newGrid[row][col].isWall,
   };
+
   newGrid[row][col] = newTile;
   return newGrid;
-}
+};
 
 export const isEqual = (a: TileType, b: TileType) => {
   return a.row === b.row && a.col === b.col;
@@ -57,4 +60,20 @@ export const getRandInt = (min: number, max: number) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min);
+};
+
+export const checkStack = (tile: TileType, stack: TileType[]) => {
+  for (let i = 0; i < stack.length; i++) {
+    if (isEqual(stack[i], tile)) return true;
+  }
+  return false;
+};
+
+export const dropFromQueue = (tile: TileType, queue: TileType[]) => {
+  for (let i = 0; i < queue.length; i++) {
+    if (isEqual(tile, queue[i])) {
+      queue.splice(i, 1);
+      break;
+    }
+  }
 };

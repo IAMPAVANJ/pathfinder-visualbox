@@ -20,14 +20,16 @@ export async function recursiveDivision({
   col: number;
   height: number;
   width: number;
-  setIsDisabled: (isDisabled: boolean) => void;
+  setIsDisabled: (disabled: boolean) => void;
   speed: SpeedType;
 }) {
   if (height <= 1 || width <= 1) {
-    return;
+    return; // Base case: if the section is too small, stop recursion
   }
+
   if (height > width) {
     await horizontalDivision({
+      // Divide horizontally if height is greater than width
       grid,
       startTile,
       endTile,
@@ -40,6 +42,7 @@ export async function recursiveDivision({
     });
   } else {
     await verticalDivision({
+      // Divide vertically if width is greater than or equal to height
       grid,
       startTile,
       endTile,

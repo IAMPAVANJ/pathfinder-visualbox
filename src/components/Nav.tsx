@@ -1,14 +1,13 @@
 import { 
-  // MutableRefObject, 
+  MutableRefObject, 
   useState } from "react";
 import { usePathfinding } from "../hooks/usePathfinding";
 import { useTile } from "../hooks/useTile";
 import {
-  // EXTENDED_SLEEP_TIME,
-  Mazes,
+  EXTENDED_SLEEP_TIME,
+  MAZES,
   PATHFINDING_ALGORITHMS,
-  // PATHFINDING_ALGORITHMS,
-  // SLEEP_TIME,
+  SLEEP_TIME,
   SPEEDS,
 } from "../utils/constants";
 // import { resetGrid } from "../utils/resetGrid";
@@ -19,18 +18,17 @@ import {
 import { Select } from "./Select";
 import { useSpeed } from "../hooks/useSpeed";
 import { runMazeAlgorithm } from "../utils/runMazeAlgorithm";
-import { resetGrid } from "../utils/ResetGrid";
+import { resetGrid } from "../utils/resetGrid";
 import { PlayButton } from "./PlayButton";
 import { runPathfindingAlgorithm } from "../utils/runPathfindingAlgorithm";
-// import { runPathfindingAlgorithm } from "../utils/runPathfindingAlgorithm";
-// import { animatePath } from "../utils/animatePath";
+import { animatePath } from "../utils/animatePath";
 
 export default function Nav(
-//   {
-//   isVisualizationRunningRef,
-// }: {
-//   isVisualizationRunningRef: MutableRefObject<boolean>;
-// }
+  {
+  isVisualizationRunningRef,
+}: {
+  isVisualizationRunningRef: MutableRefObject<boolean>;
+}
 ) {
   const [isDisabled, setIsDisabled] = useState(false);
   const {
@@ -71,6 +69,8 @@ export default function Nav(
 
   const handlerRunVisualizer = () => {
     if (isGraphVisualized) {
+      setMaze("NONE");
+      setAlgorithm("BFS");
       setIsGraphVisualized(false);
       resetGrid({ grid: grid.slice(), startTile, endTile });
       return;
@@ -82,23 +82,24 @@ export default function Nav(
       startTile,
       endTile,
     });
-console.log(traversedTiles, path);
-    // animatePath(traversedTiles, path, startTile, endTile, speed);
-    // setIsDisabled(true);
-    // isVisualizationRunningRef.current = true;
-    // setTimeout(() => {
-    //   const newGrid = grid.slice();
-    //   setGrid(newGrid);
-    //   setIsGraphVisualized(true);
-    //   setIsDisabled(false);
-    //   isVisualizationRunningRef.current = false;
-    // }, SLEEP_TIME * (traversedTiles.length + SLEEP_TIME * 2) + EXTENDED_SLEEP_TIME * (path.length + 60) * SPEEDS.find((s) => s.value === speed)!.value);
+
+    animatePath(traversedTiles, path, startTile, endTile, speed);
+    setIsDisabled(true);
+    isVisualizationRunningRef.current = true;
+    setTimeout(() => {
+      const newGrid = grid.slice();
+      setGrid(newGrid);
+      setIsGraphVisualized(true);
+      setIsDisabled(false);
+      isVisualizationRunningRef.current = false;
+    }, SLEEP_TIME * (traversedTiles.length + SLEEP_TIME * 2) + EXTENDED_SLEEP_TIME * (path.length + 60) * SPEEDS.find((s) => s.value === speed)!.value);
   };
   
 
   return (
     <div className="flex items-center justify-center min-h-[4.5rem] border-b shadow-gray-600 sm:px-5 px-0">
       <div className="flex items-center lg:justify-between justify-center w-full sm:w-[52rem]">
+        <img src="/linkedInProfile.jpeg" className="rounded-full size-8 cursor-pointer border-2"/>
         <h1 className="lg:flex hidden w-[40%] text-2xl pl-1 text-white">
           Path Finder
         </h1>
@@ -106,7 +107,7 @@ console.log(traversedTiles, path);
           <Select
             label="Maze"
             value={maze}
-            options={Mazes}
+            options={MAZES}
             isDisabled={isDisabled}
             onChange={(e) => {
               handleGenerateMaze(e.target.value as MazeType);

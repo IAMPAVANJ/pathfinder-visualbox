@@ -2,8 +2,8 @@ import { ReactNode, useState } from "react";
 import { AlgorithmType, GridType, MazeType } from "../utils/types";
 import { createGrid } from "../utils/helpers";
 import {
-  endTileConfiguration,
-  startTileConfiguration,
+  END_TILE_CONFIGURATION,
+  START_TILE_CONFIGURATION,
 } from "../utils/constants";
 import { PathfindingContext } from "./Contexts";
 
@@ -12,7 +12,7 @@ export const PathfindingProvider = ({ children }: { children: ReactNode }) => {
   const [maze, setMaze] = useState<MazeType>("NONE");
   const [isGraphVisualized, setIsGraphVisualized] = useState<boolean>(false);
   const [grid, setGrid] = useState<GridType>(
-    createGrid(startTileConfiguration, endTileConfiguration)
+    createGrid(START_TILE_CONFIGURATION, END_TILE_CONFIGURATION)
   );
   return (
     <PathfindingContext.Provider
