@@ -19,7 +19,7 @@ Developed by **Pavan**
 - Smooth visual animations
 
 ## 🖥️ Live Demo
-🔗 [Check it out here](#) *(Replace with actual link if deployed)*
+🔗 [Check it out here](https://pathfinder-visualbox.vercel.app/) *(Replace with actual link if deployed)*
 
 ## 📸 Screenshots
 *(Add screenshots of the visualizer in action)*
@@ -55,7 +55,7 @@ The app will run at `http://localhost:5173/`.
 - **TailwindCSS** (Styling and animations)
 
 ## 🏗️ Future Enhancements
-- More pathfinding algorithms (e.g., Greedy Best-First Search)
+- More pathfinding algorithms 
 - Maze generation feature
 - Improved UI/UX with more animations
 
