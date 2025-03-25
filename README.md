@@ -19,7 +19,7 @@ Developed by **Pavan**
 - Smooth visual animations
 
 ## 🖥️ Live Demo
-🔗 [Check it out here](https://pathfinder-visualbox.vercel.app/) *(Replace with actual link if deployed)*
+🔗 [Check it out here](https://pathfinder-visualbox.vercel.app/)
 
 ## 📸 Screenshots
 *(Add screenshots of the visualizer in action)*
