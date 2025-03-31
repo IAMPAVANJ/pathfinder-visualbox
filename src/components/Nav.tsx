@@ -10,6 +10,7 @@ import {
   SLEEP_TIME,
   SPEEDS,
 } from "../utils/constants";
+
 // import { resetGrid } from "../utils/resetGrid";
 import { 
   AlgorithmType,
@@ -99,11 +100,11 @@ export default function Nav(
   return (
     <div className="flex items-center justify-center min-h-[4.5rem] border-b shadow-gray-600 sm:px-5 px-0">
       <div className="flex items-center lg:justify-between justify-center w-full sm:w-[52rem]">
-        <img src="/pathfinder.svg" className="rounded-full size-8 cursor-pointer border-2" title="click me" onClick={()=>window.open("https://www.linkedin.com/in/iampavan/","_blank")}/>
-        <h1 className="lg:flex hidden w-[40%] text-2xl pl-1 text-white">
-          Path Finder
-        </h1>
         <div className="flex sm:items-end items-center justify-start sm:justify-between sm:flex-row flex-col sm:space-y-0 space-y-3 sm:py-0 py-4 sm:space-x-4">
+        <img src="/linkedInProfile.jpeg" style={{borderRadius:"58% 42% 39% 61% / 30% 30% 70% 70% "}} className="rounded-full size-8 cursor-pointer border-2" title="click me" onClick={()=>window.open("https://www.linkedin.com/in/iampavan/","_blank")}/>
+        <h1 className="flex  w-auto text-2xl pl-1 text-white font-serif">
+            Path Finder
+        </h1>
           <Select
             label="Maze"
             value={maze}

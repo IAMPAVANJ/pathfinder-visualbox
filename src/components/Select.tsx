@@ -15,7 +15,7 @@ export function Select({
 }) {
   return (
     <div className="flex flex-col items-start gap-1">
-      <label className="text-xs text-white ml-1" htmlFor={label}>
+      <label className="text-xs font-sans text-white ml-1" htmlFor={label}>
         {label}
       </label>
       <select
